@@ -2,15 +2,24 @@
 # SPDX-License-Identifier: Apache-2.0
 #
 # PerleOS additions on top of vendor/lineage. Device products inherit this
-# after vendor/lineage/config/common_*.mk, and config/overlays.mk before it.
+# after vendor/lineage/config/common_*.mk, and config/overlays.mk before it (this order
+# sets overlay priority; the order in which the files are read is described below).
+#
+# The version below needs vendor/lineage/config/version.mk to be read first. The build
+# imports inherited product makefiles in sorted path order, not in inherit-product order,
+# so this holds because vendor/lineage sorts before vendor/perleos; the check below stops
+# the build if a product imports this file earlier.
 
 $(call inherit-product, vendor/microg/microg.mk)
 
 # Version, in the LineageOS scheme: <major>.<minor>-<date>-<build type>-<device>,
-# e.g. 0.1-20261112-UNOFFICIAL-j706f. The build type stays UNOFFICIAL until builds
+# e.g. 0.1-20261113-UNOFFICIAL-j706f. The build type stays UNOFFICIAL until builds
 # are signed with PerleOS keys.
 PERLEOS_VERSION_MAJOR := 0
 PERLEOS_VERSION_MINOR := 1
+ifeq ($(LINEAGE_VERSION_SUFFIX),)
+$(error vendor/perleos/config/common.mk must be read after vendor/lineage/config/version.mk)
+endif
 PERLEOS_VERSION := $(PERLEOS_VERSION_MAJOR).$(PERLEOS_VERSION_MINOR)-$(LINEAGE_VERSION_SUFFIX)
 
 # Settings > About shows ro.lineage.display.version under the "PerleOS version" label
