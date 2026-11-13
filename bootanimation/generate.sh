@@ -11,6 +11,7 @@
 # loops until boot completes (the halo breathes).
 
 set -euo pipefail
+umask 022  # the zip records file modes
 
 out=$(realpath -m "$1")
 mkdir -p "$(dirname "$out")"
@@ -85,7 +86,7 @@ frame() {
         -geometry +$((PX - R - 2))+$((PY - R - 2)) -compose over -composite \
         \( "$work/text.png" -channel A -evaluate multiply "$(calc "$4 / 100")" +channel \) \
         -geometry +0+0 -compose over -composite \
-        -depth 8 -type TrueColor "$1"
+        -depth 8 -strip -define png:exclude-chunks=date,time PNG24:"$1"
 }
 
 mkdir -p "$work/anim/part0" "$work/anim/part1"
@@ -102,7 +103,11 @@ for i in $(seq 0 59); do
 done
 
 printf '%s %s %s\np 1 0 part0\np 0 0 part1\n' "$W" "$H" "$FPS" > "$work/anim/desc.txt"
-(cd "$work/anim" && rm -f "$out" && zip -q -0 -r "$out" desc.txt part0 part1)
+# Fixed timestamps, sorted entries and no extra attributes: the same script always gives
+# the same zip.
+(cd "$work/anim" && rm -f "$out" &&
+    find . -exec touch -h -d @1230768000 {} + &&
+    find desc.txt part0 part1 -print | LC_ALL=C sort | TZ=UTC zip -q -0 -X "$out" -@)
 
 # Optional preview: part0 then two loops of part1, half size, as an animated GIF.
 if [ -n "$gif" ]; then
