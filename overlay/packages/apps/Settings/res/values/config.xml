@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    SPDX-FileCopyrightText: The PerleOS Project
+    SPDX-License-Identifier: Apache-2.0
+-->
+<resources>
+    <!-- PerleOS ships no updater, so no app handles SYSTEM_UPDATE_SETTINGS: hide the
+         "System updates" entry on the System page and in search. -->
+    <bool name="config_show_system_update_settings">false</bool>
+</resources>
