@@ -20,7 +20,7 @@ light=vendor/perleos/fonts/SpaceGrotesk-Light.ttf
 work=$(mktemp -d)
 trap 'rm -rf "$work"' EXIT
 
-SHELL='#F4F1EC'
+TEXT_COLOR='#F4F1EC'
 PEARL_HI='#FFFFFF' NACRE='#E3DAF3' MIST='#A9B7DC'
 
 # Frames are centred on the screen; the rest of the screen stays black.
@@ -51,7 +51,7 @@ PY=$((base + PT / 50 - R))
 convert -size ${W}x${H} xc:black PNG24:"$work/bg.png"
 
 # Letters on a transparent layer, positioned on the baseline.
-convert -size ${W}x${H} xc:none -fill "$SHELL" -kerning $KERN -pointsize $PT \
+convert -size ${W}x${H} xc:none -fill "$TEXT_COLOR" -kerning $KERN -pointsize $PT \
     -font "$bold" -annotate +$x0+$base Perle \
     -font "$light" -annotate +$((PX + R + MARGIN))+$base S "$work/text.png"
 
