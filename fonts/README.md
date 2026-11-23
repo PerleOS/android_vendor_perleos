@@ -5,6 +5,8 @@ SPDX-License-Identifier: Apache-2.0
 
 # Fonts
 
+Used only by [`../bootanimation/generate.sh`](../bootanimation/generate.sh) for the PerleOS wordmark; the files are not installed on the device, which keeps the LineageOS system font.
+
 Space Grotesk 2.0.0 by Florian Karsten and Květoslav Bartoš, licensed under the SIL Open Font License 1.1 ([`OFL.txt`](OFL.txt)); no Reserved Font Name is declared. The files are the static TTFs of the upstream release, unmodified:
 
 - Source: https://github.com/floriankarsten/space-grotesk/releases/download/2.0.0/SpaceGrotesk-2.0.0.zip (sha256 `53b415577d4139248555300710bea0d268c7a5be67b93de53b716a9736cabffd`), `ttf/static/` and `OFL.txt`.
