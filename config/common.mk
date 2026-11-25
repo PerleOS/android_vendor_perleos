@@ -33,4 +33,5 @@ PRODUCT_PRODUCT_PROPERTIES += \
 TARGET_BOOTANIMATION := vendor/perleos/bootanimation/bootanimation.zip
 
 PRODUCT_PACKAGES += \
+    PerleOSLauncher3Overlay \
     PerleOSRemovePackages
