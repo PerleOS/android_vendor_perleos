@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+     SPDX-FileCopyrightText: The PerleOS Project
+     SPDX-License-Identifier: Apache-2.0
+-->
+<resources>
+    <!-- Notification shade without window blur: the stock colors are opaque. ScrimController
+         uses the alpha as the opacity of the scrim. -->
+    <color name="shade_panel_fallback">#CCFFFFFF</color>
+    <!-- Drawn over shade_panel_fallback, behind the notifications. -->
+    <color name="notification_scrim_fallback">#4DFFFFFF</color>
+</resources>
