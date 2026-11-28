@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+     SPDX-FileCopyrightText: The PerleOS Project
+     SPDX-License-Identifier: Apache-2.0
+-->
+<resources>
+    <!-- Keep the PIN and pattern bouncer centered in landscape instead of the one-handed layout,
+         which places it on one side of the screen. -->
+    <bool name="can_use_one_handed_bouncer">false</bool>
+</resources>
